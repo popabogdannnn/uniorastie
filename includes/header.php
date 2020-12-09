@@ -6,13 +6,30 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <title>UO</title>
     <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 <body>
 
+<div id="page-container">
+
 <header>
     <nav>
+            <?php
+                if(isset($_SESSION['sessionId'])) {
+                    if($_SESSION['privilege'] === 0) {
+                        echo '<p class="role">Administrator</p>';
+                    }
+                    if($_SESSION['privilege'] === 1) {
+                        echo '<p class="role">Profesor</p>';
+                    }
+                    if($_SESSION['privilege'] == 3) {
+                        echo '<p class="role">Student</p>';
+                    }
+                }
+            ?>
+        
         <ul>
             <?php
                 if(!isset($_SESSION['sessionId'])) { ?>
@@ -21,7 +38,18 @@
                     <li><a href="register.php">Register</a></li>
              <?php } 
                 else {
+                ?>
+                    <li><a href="index.php">Acasă</a></li>
+                <?php
+                 if($_SESSION['privilege'] === 1) {
+                    echo '<li><a href="show-predare.php">Predați la</a></li>';
+                }
+
+                 if($_SESSION['privilege'] === 3) {
+                    echo '<li><a href="show-grupa.php">Grupa mea</a></li>';
+                 }
                 
+
                  if($_SESSION['privilege'] === 0) { ?>
                     <li><a href="view-users.php">Utilizatori</a></li>
                     <li><a href="set-privilege.php">Setează privilege</a></li>

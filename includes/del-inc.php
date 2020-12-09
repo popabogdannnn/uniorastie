@@ -1,8 +1,10 @@
 <?php
+session_start();
 
-if(isset($_POST['submit'])) {
+
+if(isset($_POST['submit']) && $_SESSION['privilege'] === 0) {
     require 'database.php';
-    $sql = "DELETE FROM Utilizatori WHERE userID = ?";
+    $sql = "DELETE FROM utilizatori WHERE userID = ?";
     $stmt = mysqli_stmt_init($conn);
     
     if(!mysqli_stmt_prepare($stmt, $sql)) {

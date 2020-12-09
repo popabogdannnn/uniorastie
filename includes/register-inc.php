@@ -2,6 +2,18 @@
 
 if(isset($_POST['submit'])) {
     require 'database.php';
+   
+    $captcha = $_POST['g-recaptcha-response'];
+    $secretkey = "6LcjKvkZAAAAAOMFeFnXG0z3-A41aoYZPIca6lH-";
+    $url = "https://www.google.com/recaptcha/api/siteverify?secret=" . urlencode($secretkey) . "&response=" . urlencode($captcha);
+
+    $response = file_get_contents($url);
+    $responseKey = json_decode($response, TRUE);
+    
+    if(!$responseKey['success']) {
+        header("Location: ../index.php");
+        exit();        
+    }
 
     $username = $_POST['username'];
     $nume = $_POST['nume'];
@@ -40,7 +52,7 @@ if(isset($_POST['submit'])) {
                 exit();
             }
             else {
-                $sql = "INSERT INTO Utilizatori (username, email, nume, prenume, password, privilege) VALUES (?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO utilizatori (username, email, nume, prenume, password, privilege) VALUES (?, ?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../register.php?error=sqlerror");

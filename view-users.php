@@ -9,7 +9,7 @@ if($_SESSION['privilege'] !== 0) {
 
 
 
-$sql = "SELECT userID, username, privilege FROM Utilizatori";
+$sql = "SELECT userID, username, privilege FROM utilizatori";
 $stmt = mysqli_stmt_init($conn);
 
 if(!mysqli_stmt_prepare($stmt, $sql)) {

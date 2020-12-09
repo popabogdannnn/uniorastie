@@ -9,7 +9,7 @@ if(!isset($_SESSION['sessionId'])) {
 
 ?>
 
-<form action="includes/send-message-inc.php?sessionuser=<?php echo $_SESSION['sessionUser']?>" method="post">
+<form action="includes/send-message-inc.php" method="post">
         <input type="text" name="user" placeholder="Trimite la">
         <textarea type="text" name="message" placeholder="Mesaj"></textarea>
         <button type="submit" name="submit">Trimite</button>

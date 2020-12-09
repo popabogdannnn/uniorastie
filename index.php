@@ -11,6 +11,7 @@ require_once 'includes/header.php';
     else {
         echo "Acasă";
     }
+
 ?>
 
 <?php
