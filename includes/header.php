@@ -43,16 +43,21 @@
                 <?php
                  if($_SESSION['privilege'] === 1) {
                     echo '<li><a href="show-predare.php">Predați la</a></li>';
+                    echo '<li><a href="trimite-tema.php">Trimiteți temă</a></li>';
+                    echo '<li><a href="lista-teme.php">Teme trimise</a></li>';
                 }
 
                  if($_SESSION['privilege'] === 3) {
                     echo '<li><a href="show-grupa.php">Grupa mea</a></li>';
+                    echo '<li><a href="lista-teme.php">Temele mele</a></li>';
                  }
                 
 
                  if($_SESSION['privilege'] === 0) { ?>
                     <li><a href="view-users.php">Utilizatori</a></li>
                     <li><a href="set-privilege.php">Setează privilege</a></li>
+                    <li><a href="creare-grupa.php">Creează grupă</a></li>
+                    <li><a href="set-predare.php">Nouă predare</a></li>
                     <li><a href="del.php">Șterge</a></li>
                         
                  <?php   } ?>

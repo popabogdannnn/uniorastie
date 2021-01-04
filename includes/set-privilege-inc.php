@@ -33,7 +33,7 @@ if(isset($_POST['submit']) && $_SESSION['privilege'] === 0) {
             header("Location: ../index.php?error=sqlerror");
             exit();
         }
-        $grupaID = "Grupa 234";
+        $grupaID = $_POST['idgrupa'];
         mysqli_stmt_bind_param($stmt, "ss", $ans[0]['username'], $grupaID);
         mysqli_stmt_execute($stmt);
         header("Location: ../index.php?succes=updatecomplete2");
@@ -41,17 +41,7 @@ if(isset($_POST['submit']) && $_SESSION['privilege'] === 0) {
     }
 
     if($privilege == 1) {
-        $sql = "INSERT INTO preda_la_grupa (profesor_username, grupaID, nume_materie) VALUES (?, ?, ?)";
-        $stmt = mysqli_stmt_init($conn);
-
-        if(!mysqli_stmt_prepare($stmt, $sql)) {
-            header("Location: ../index.php?error=sqlerror");
-            exit();
-        }
-        $grupaID = "Grupa 234";
-        $materie = "DAW";
-        mysqli_stmt_bind_param($stmt, "sss", $ans[0]['username'], $grupaID, $materie);
-        mysqli_stmt_execute($stmt);
+        
         header("Location: ../index.php?succes=updatecomplete3");
         exit();
     }

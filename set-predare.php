@@ -10,10 +10,10 @@ if($_SESSION['privilege'] !== 0) {
 ?>
 
 <div>
-    <form action="includes/set-privilege-inc.php" method="post">
-        <input type="text" name="id" placeholder="ID">
-        <input type="text" name="privilege" placeholder="Rank">
-        <input type="text" name="idgrupa" placeholder="ID Grupa (doar daca rank = 3)">
+    <form action="includes/set-predare-inc.php" method="post">
+        <input type="text" name="usernameProf" placeholder="Username profesor">
+        <input type="text" name="grupaID" placeholder="Nume Grupa">
+        <input type="text" name="materie" placeholder="Nume Materie">
         <button type="submit" name="submit">set</button>
     </form>
 </div>

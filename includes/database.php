@@ -50,7 +50,6 @@ function getFromTableBy($conn, $table, $col, $val) {
     }
 
     return $ret;
-    
 }
 
 
