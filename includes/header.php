@@ -45,11 +45,14 @@
                     echo '<li><a href="show-predare.php">Predați la</a></li>';
                     echo '<li><a href="trimite-tema.php">Trimiteți temă</a></li>';
                     echo '<li><a href="lista-teme.php">Teme trimise</a></li>';
+                    echo '<li><a href="trimite-lectie.php">Trimiteți lecție</a></li>';
+                    echo '<li><a href="lista-lectii.php">Lecții trimise</a></li>';
                 }
 
                  if($_SESSION['privilege'] === 3) {
                     echo '<li><a href="show-grupa.php">Grupa mea</a></li>';
                     echo '<li><a href="lista-teme.php">Temele mele</a></li>';
+                    echo '<li><a href="lista-lectii.php">Lecții primite</a></li>';
                  }
                 
 

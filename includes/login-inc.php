@@ -26,7 +26,10 @@ if(isset($_POST['submit'])) {
                     header("Location: ../index.php?error=wrongpass");
                     exit();
                 }
-                else {
+                elseif($row['verificat'] == 0) {
+                    header("Location: ../index.php?error=usernotverified");
+                    exit();
+                }else {
                     session_start();
                     $_SESSION['sessionId'] = $row['userID'];
                     $_SESSION['sessionUser'] = $row['username'];

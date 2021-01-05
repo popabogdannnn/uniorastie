@@ -61,8 +61,8 @@ if(!isset($_SESSION['sessionId']) && ($_SESSION['privilege'] === 1 || $_SESSION[
 
     $nota = $nota . $notaText;
 
-
-    echo '<form action="includes/update-tema-inc.php?temaid=' . $temaID . '" method="post">' . $cerinta . $submisie . $nota . '<button type="submit" name="submit">Update</button> </form>';
+    echo '<form action="includes/update-tema-inc.php?temaid=' . $temaID . '" method="post">' . $cerinta . $submisie . $nota . '<button type="submit" name="submit">Update</button> </form> <br>';
+    echo "<a href=listeaza-tema-pdf.php?temaid=". strval($temaID) . ">Vizualizare pdf</a>"
 ?>
 
 <?php

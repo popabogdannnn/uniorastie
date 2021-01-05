@@ -9,11 +9,10 @@ if(!isset($_SESSION['sessionId']) && $_SESSION['privilege'] != 1) {
 
 ?>
 
-<form action="includes/trimite-tema-inc.php" method="post">
+<form action="includes/trimite-lectie-inc.php" method="post" enctype="multipart/form-data">
         <input type="text" name="idgrupa" placeholder="Grupa">
-        <textarea type="text" name="cerinta" placeholder="Cerință"></textarea>
-        <input type="datetime-local" name="deadline">
-        <button type="submit" name="submit">Trimite</button>
+        <input type="file" name="fisier" accept="video/mp4">
+        <input type="submit" name="submit" value="Trimite">
 </form>
 
 

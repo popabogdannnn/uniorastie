@@ -1,5 +1,6 @@
 <?php
 
+$domain = "localhost/project";
 $dbHost = "localhost";
 $dbUser = "root";
 $dbPass = "";

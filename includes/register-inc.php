@@ -52,7 +52,7 @@ if(isset($_POST['submit'])) {
                 exit();
             }
             else {
-                $sql = "INSERT INTO utilizatori (username, email, nume, prenume, password, privilege) VALUES (?, ?, ?, ?, ?, ?)";
+                $sql = "INSERT INTO utilizatori (username, email, nume, prenume, password, privilege, vkey, verificat) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 $stmt = mysqli_stmt_init($conn);
                 if(!mysqli_stmt_prepare($stmt, $sql)) {
                     header("Location: ../register.php?error=sqlerror");
@@ -61,11 +61,27 @@ if(isset($_POST['submit'])) {
                 else {
                     $hashedPass = password_hash($password, PASSWORD_DEFAULT);
                     $privilege = 2;
+                    $verificat = 0;
+                    $vkey = md5(time() . $username);
 
-                    mysqli_stmt_bind_param($stmt, "sssssi", $username, $email, $nume, $prenume, $hashedPass, $privilege);
-                    mysqli_stmt_execute($stmt);
-                    header("Location: ../register.php?success=registered");
-                    exit();
+                    $to = $email;
+                    $subject = "Verificare Email";
+                    $message = "<a href=http://". $domain ."/verify.php?vkey=$vkey>Înregistrare cont</a>";
+                    $headers = "From: popa_bogdanioan@yahoo.com";
+                    $headers .= "MIME-Version: 1.0" . "\r\n";
+                    $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";    
+                    
+                    if(mail($to, $subject, $message, $headers)) {
+                        mysqli_stmt_bind_param($stmt, "sssssisi", $username, $email, $nume, $prenume, $hashedPass, $privilege, $vkey, $verificat);
+                        mysqli_stmt_execute($stmt);
+                        header("Location: ../register-success.php?success=registered");
+                        exit();
+                    }
+                    else {
+                        header("Location: ../register-success.php?error=mailnotsent");
+                        exit();
+                    }
+                    
                 }
             }
         }
